@@ -193,5 +193,5 @@ if __name__ == "__main__":
 
     app.secret_key = 'jw6bw48bw4vuse5iwb5iwr6biw5e6isjzvertgrs6ibw6iwv5eacyrzhvdybksuvayctahsjdkynluobi6uwv5ey'
 
-    app.run(port=PORT, ssl_context=SSL_CONTEXT)
+    app.run(port=PORT, ssl_context=SSL_CONTEXT, host='0.0.0.0')
 
